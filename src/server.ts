@@ -4,6 +4,8 @@ import connectDB from "../config/database";
 import OrganizationConfig from "./routes/OrganizationConfig.routes";
 import ProtocolConfig from './routes/ProtocolConfig.routes';
 import ProtocolCollateralConfig from './routes/ProtocolCollateralConfig.routes';
+import LenderConfig from "./routes/LenderConfig.routes";
+import LenderApi from "./routes/LenderApi.routes";
 
 const app = express();
 
@@ -25,6 +27,8 @@ app.get("/", (_req, res) => {
 app.use("/OrganizationConfig", OrganizationConfig);
 app.use("/ProtocolConfig",ProtocolConfig);
 app.use("/ProtocolCollateralConfig",ProtocolCollateralConfig);
+app.use("/LenderConfig",LenderConfig);
+app.use("/LenderApi",LenderApi);
 
 const port = app.get("port");
 const server = app.listen(port, () =>
