@@ -10,7 +10,7 @@ const router: Router = Router();
 // @route   GET /LenderConfig
 // @desc    Get Lender Config
 // @access  Private
-router.get("/lenderConfig", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const controller: ILenderConfigController = new ILenderConfigController();
     const organizationConfig: ILenderConfigController = await controller.getRecords({});
@@ -29,7 +29,7 @@ router.get("/lenderConfig", async (req, res) => {
 // @desc    create and update LenderConfig
 // @access  Private
 router.post(
-  "/lenderConfig",
+  "/",
   [
     check("Collateral_Max", "Min Collateral is required").not().isEmpty(),
   ],
