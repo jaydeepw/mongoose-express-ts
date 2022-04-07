@@ -1,9 +1,9 @@
 import { Document, model, Schema } from "mongoose";
-import LenderConfig, { ILenderConfig } from "./LenderConfig.model";
+import LenderConfig, { ILenderConfig, lenderConfig } from "./LenderConfig.model";
 
 /**
  * Interface to model the Organization Config for TypeScript.
-    * @param Lender_Config: LenderConfig
+    * @param Lender_Config: ILenderConfig
     * @param API_Endpoint: String
  */
 export interface ILenderAPI extends Document {
@@ -11,9 +11,9 @@ export interface ILenderAPI extends Document {
   API_Endpoint: String
 }
 
-const lenderApi: Schema = new Schema({
+export const lenderApi: Schema = new Schema({
   Lender_Config: {
-    type: String
+    type: [lenderConfig]
   },
   API_Endpoint: {
     type: String

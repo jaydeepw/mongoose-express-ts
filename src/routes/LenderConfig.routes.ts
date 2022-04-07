@@ -31,7 +31,7 @@ router.get("/", async (req, res) => {
 router.post(
   "/",
   [
-    check("Collateral_Max", "Min Collateral is required").not().isEmpty(),
+    check("Loan_Amount", "Loan_Amount is required").not().isEmpty(),
   ],
   async (req: Request, res: Response) => {
     const errors = validationResult(req);

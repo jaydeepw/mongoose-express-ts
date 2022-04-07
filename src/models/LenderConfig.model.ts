@@ -9,7 +9,7 @@ import { Document, model, Schema } from "mongoose";
     * @param Product: String
     * @param Product: Number
     * @param APR: String
-    * @param Location: Number
+    * @param Location: String
     * @param Term: Number
     * @param Credit_Score: Number
  */
@@ -25,7 +25,7 @@ export interface ILenderConfig extends Document {
   Credit_Score: Number
 }
 
-const lenderConfig: Schema = new Schema({
+export const lenderConfig: Schema = new Schema({
   Collateral_Max: {
     type: Number
   },

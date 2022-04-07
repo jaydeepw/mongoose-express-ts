@@ -1,4 +1,8 @@
-import LenderApi, { ILenderAPI } from "../models/LenderApis.model";
+import LenderApi, { ILenderAPI, lenderApi } from "../models/LenderApis.model";
+import ILenderConfigController from "./LenderConfig.controller";
+import ErrorHandler from "../utils/ErrorHandler.util";
+import Constants from "../utils/Constants.util";
+import { ILenderConfig } from "../models/LenderConfig.model";
 
 export default class ILenderApiController {
 
@@ -7,10 +11,24 @@ export default class ILenderApiController {
     }
 
     async createRecord(data: any): Promise<any> {
-        const { API_Endpoint,  } = data;
+
+        const lenderConfigId = data.Lender_Config;
+        const filterCondition = {
+            _id: lenderConfigId
+        }
+        const controller: ILenderConfigController = new ILenderConfigController();
+        const lenderConfig: ILenderConfig = await controller.getRecords(filterCondition);
+
+        console.log("lenderConfig2: ", lenderConfig)
+        if(!lenderConfig) {    
+            return ErrorHandler.getErrorJson(Constants.PROTOCOL_CONFIG_NOT_FOUND, null);    
+        }
+
         const lenderApiFields = {
-            API_Endpoint
+            API_Endpoint: data.API_Endpoint,
+            Lender_Config: lenderConfig
         };
+
         // Create
         let lenderApi: ILenderAPI = new LenderApi(lenderApiFields);
         await lenderApi.save();
