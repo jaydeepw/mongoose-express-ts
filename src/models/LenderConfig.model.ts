@@ -19,18 +19,6 @@ export interface ILenderConfig extends Document {
   Products: Array<IProduct>
 }
 
-export interface ILoanApplicationRequest extends Document {
-  LoanId: String,
-  LoanType: String,
-  CustomerName: String, // ideally should be pointing to IUser type in the core domain models
-  Amount: String,
-  Status: String,
-  Lender: ILenderConfig,
-  Agent: String, // ideally should be pointing to IUser type in the core domain models
-  Product: IProduct // considering that we will be having IProd records of each possible combination
-  NotificationSent: Boolean
-}
-
 export interface IEmailNotification extends Document {
   LoanRequest: ILoanApplicationRequest
   Message: String,

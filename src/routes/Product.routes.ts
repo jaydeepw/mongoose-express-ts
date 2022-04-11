@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
 router.post(
   "/",
   [
-    check("Loan_Amount", "Loan_Amount is required").not().isEmpty(),
+    check("Name", "Name is required").not().isEmpty(),
   ],
   async (req: Request, res: Response) => {
     const errors = validationResult(req);
