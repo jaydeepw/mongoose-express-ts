@@ -1,23 +1,24 @@
 import { Router, Request, Response } from "express";
 import { check, validationResult } from "express-validator/check";
 import HttpStatusCodes from "http-status-codes";
-import LenderConfigController from "../controllers/LenderConfig.controller";
 import ErrorHandler from "../utils/ErrorHandler.util";
 import Constants from "../utils/Constants.util";
+import ProductController from "../controllers/Product.controller";
 
 const router: Router = Router();
 
-// @route   GET /LenderConfig
-// @desc    Get Lender Config
+// @route   GET /Product
+// @desc    Get the product
 // @access  Private
 router.get("/", async (req, res) => {
   try {
-    const controller: LenderConfigController = new LenderConfigController();
-    const organizationConfig: LenderConfigController = await controller.getRecords({});
-    if (!organizationConfig) {
-      return res.status(HttpStatusCodes.BAD_REQUEST).json(ErrorHandler.getErrorJson(Constants.NO_ORG_CONFIG_FOUND, null));
+    const controller: ProductController = new ProductController();
+    const product: ProductController = await controller.getRecords({});
+    if (!product) {
+      return res.status(HttpStatusCodes.BAD_REQUEST)
+      .json(ErrorHandler.getErrorJson(Constants.PRODUCT_NOT_FOUND, null));
     }
-    res.json(organizationConfig);
+    res.json(product);
   } catch (err) {
     console.error(err.message);
     res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).send(Constants.SERVER_ERROR);
@@ -25,8 +26,8 @@ router.get("/", async (req, res) => {
 });
 
 
-// @route   POST /LenderConfig
-// @desc    create and update LenderConfig
+// @route   POST /Product
+// @desc    create Product
 // @access  Private
 router.post(
   "/",
@@ -41,9 +42,9 @@ router.post(
         .json(ErrorHandler.getErrorJson('', errors.array()));
     }
     try {
-      const controller: LenderConfigController = new LenderConfigController();
-      const organizationConfig: LenderConfigController = await controller.createRecord(req.body);
-      res.json(organizationConfig);
+      const controller: ProductController = new ProductController();
+      const product: ProductController = await controller.createRecord(req.body);
+      res.json(product);
     } catch (err) {
       console.error(err.message);
       res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).send(Constants.SERVER_ERROR);

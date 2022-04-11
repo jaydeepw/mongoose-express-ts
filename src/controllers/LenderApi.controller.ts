@@ -1,5 +1,5 @@
 import LenderApi, { ILenderAPI, lenderApi } from "../models/LenderApis.model";
-import ILenderConfigController from "./LenderConfig.controller";
+import LenderConfigController from "./LenderConfig.controller";
 import ErrorHandler from "../utils/ErrorHandler.util";
 import Constants from "../utils/Constants.util";
 import { ILenderConfig } from "../models/LenderConfig.model";
@@ -16,7 +16,7 @@ export default class ILenderApiController {
         const filterCondition = {
             _id: lenderConfigId
         }
-        const controller: ILenderConfigController = new ILenderConfigController();
+        const controller: LenderConfigController = new LenderConfigController();
         const lenderConfig: ILenderConfig = await controller.getRecords(filterCondition);
 
         console.log("lenderConfig2: ", lenderConfig)

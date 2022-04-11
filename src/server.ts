@@ -6,6 +6,7 @@ import ProtocolConfig from './routes/ProtocolConfig.routes';
 import ProtocolCollateralConfig from './routes/ProtocolCollateralConfig.routes';
 import LenderConfig from "./routes/LenderConfig.routes";
 import LenderApi from "./routes/LenderApi.routes";
+import Product from "./routes/Product.routes";
 
 const app = express();
 
@@ -29,10 +30,11 @@ app.use("/ProtocolConfig",ProtocolConfig);
 app.use("/ProtocolCollateralConfig",ProtocolCollateralConfig);
 app.use("/LenderConfig",LenderConfig);
 app.use("/LenderApi",LenderApi);
+app.use("/Product",Product);
 
 const port = app.get("port");
 const server = app.listen(port, () =>
-  console.log(`Server started on port ${port}`)
+  console.log(`Server2 started on port ${port}`)
 );
 
 export default server;

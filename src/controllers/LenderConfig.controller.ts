@@ -1,6 +1,6 @@
 import LenderConfig, { ILenderConfig } from "../models/LenderConfig.model";
 
-export default class ILenderConfigController {
+export default class LenderConfigController {
 
     getRecords(filterCondition: any): any {
         return LenderConfig.find(filterCondition).populate("");

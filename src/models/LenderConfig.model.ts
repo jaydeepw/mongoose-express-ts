@@ -1,4 +1,5 @@
 import { Document, model, Schema } from "mongoose";
+import { Product } from "./Product.model";
 
 /**
  * Interface to model the Organization Config for TypeScript.
@@ -14,15 +15,25 @@ import { Document, model, Schema } from "mongoose";
     * @param Credit_Score: Number
  */
 export interface ILenderConfig extends Document {
-  Collateral_Max: Number,
-  Collateral_Min: Number,
-  Loan_Amount: String,
-  Purpose: String,
-  Product: String,
-  APR: Number,
-  Location: String,
-  Term: Number,
-  Credit_Score: Number
+  LenderName: String,
+  Products: Array<IProduct>
+}
+
+export interface ILoanApplicationRequest extends Document {
+  LoanId: String,
+  LoanType: String,
+  CustomerName: String, // ideally should be pointing to IUser type in the core domain models
+  Amount: String,
+  Status: String,
+  Lender: ILenderConfig,
+  Agent: String, // ideally should be pointing to IUser type in the core domain models
+  Product: IProduct // considering that we will be having IProd records of each possible combination
+  NotificationSent: Boolean
+}
+
+export interface IEmailNotification extends Document {
+  LoanRequest: ILoanApplicationRequest
+  Message: String,
 }
 
 export const lenderConfig: Schema = new Schema({
@@ -32,26 +43,29 @@ export const lenderConfig: Schema = new Schema({
   Collateral_Min: {
     type: Number
   },
-  Loan_Amount: {
-    type: String
-  },
   Purpose: {
-    type: String
-  },
-  Product: {
     type: String
   },
   APR: {
     type: Number
   },
+  APRType: {
+    type: String
+  },
   Location: {
     type: String
+  },
+  LocationIncluded: {
+    type: Boolean
   },
   Term: {
     type: Number
   },
   Credit_Score: {
     type: Number
+  },
+  OfferName: {
+    type: String
   }
 });
 
