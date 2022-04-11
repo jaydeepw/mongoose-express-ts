@@ -1,5 +1,6 @@
 import { Document, model, Schema } from "mongoose";
-import { Product } from "./Product.model";
+import { ILoanApplicationRequest } from "./LoanApplicationRequest";
+import { IProduct } from "./Product.model";
 
 /**
  * Interface to model the Organization Config for TypeScript.
@@ -17,11 +18,6 @@ import { Product } from "./Product.model";
 export interface ILenderConfig extends Document {
   LenderName: String,
   Products: Array<IProduct>
-}
-
-export interface IEmailNotification extends Document {
-  LoanRequest: ILoanApplicationRequest
-  Message: String,
 }
 
 export const lenderConfig: Schema = new Schema({

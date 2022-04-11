@@ -6,4 +6,5 @@ export default class Constants {
     static PROTOCOL_CONFIG_NOT_FOUND: any = "Protocol Config Not Found!";
     static PRODUCT_NOT_FOUND: any = "Product Not Found!";
     static APPLICATION_REQUEST_NOT_FOUND: any = "Loan Application Request Not Found!";
+    static EMAIL_NOTIFICATION_NOT_FOUND: any = "Email notification Not Found!";
 }

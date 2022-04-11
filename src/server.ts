@@ -8,6 +8,7 @@ import LenderConfig from "./routes/LenderConfig.routes";
 import LenderApi from "./routes/LenderApi.routes";
 import Product from "./routes/Product.routes";
 import LoanApplicationRequest from "./routes/LoanApplicationRequest.routes";
+import EmailNotification from "./routes/EmailNotification.routes";
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use("/LenderConfig",LenderConfig);
 app.use("/LenderApi",LenderApi);
 app.use("/Product",Product);
 app.use("/LoanApplicationRequest",LoanApplicationRequest);
+app.use("/EmailNotification",EmailNotification);
 
 const port = app.get("port");
 const server = app.listen(port, () =>
